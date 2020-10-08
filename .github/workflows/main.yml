@@ -11,7 +11,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_IO_TOKEN }}
+          password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
           docker pull k8s.gcr.io/ingress-nginx/controller:v0.35.0  
