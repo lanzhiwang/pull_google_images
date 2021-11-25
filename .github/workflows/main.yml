@@ -15,5 +15,5 @@ jobs:
       - name: Docker pull and push
         run: |
           docker pull gcr.io/kaniko-project/executor@sha256:b9eec410fa32cd77cdb7685c70f86a96debb8b087e77e63d7fe37eaadb178709
-          docker tag  gcr.io/kaniko-project/executor@sha256:b9eec410fa32cd77cdb7685c70f86a96debb8b087e77e63d7fe37eaadb178709 ghcr.io/lanzhiwang/executor@sha256:b9eec410fa32cd77cdb7685c70f86a96debb8b087e77e63d7fe37eaadb178709
-          docker push ghcr.io/lanzhiwang/executor@sha256:b9eec410fa32cd77cdb7685c70f86a96debb8b087e77e63d7fe37eaadb178709
+          docker tag  gcr.io/kaniko-project/executor@sha256:b9eec410fa32cd77cdb7685c70f86a96debb8b087e77e63d7fe37eaadb178709 ghcr.io/lanzhiwang/executor:v1
+          docker push ghcr.io/lanzhiwang/executor:v1
