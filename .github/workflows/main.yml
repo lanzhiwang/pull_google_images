@@ -14,6 +14,6 @@ jobs:
           password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
-          docker pull --platform linux/arm64 gcr.io/kaniko-project/executor@sha256:b9eec410fa32cd77cdb7685c70f86a96debb8b087e77e63d7fe37eaadb178709
-          docker tag  gcr.io/kaniko-project/executor@sha256:b9eec410fa32cd77cdb7685c70f86a96debb8b087e77e63d7fe37eaadb178709 ghcr.io/lanzhiwang/executor-arm64:v1.3.0
-          docker push ghcr.io/lanzhiwang/executor-arm64:v1.3.0
+          docker pull --platform linux/amd64 gcr.io/kaniko-project/executor:v1.3.0
+          docker tag  gcr.io/kaniko-project/executor:v1.3.0 ghcr.io/lanzhiwang/executor-amd64:v1.3.0
+          docker push ghcr.io/lanzhiwang/executor-amd64:v1.3.0
