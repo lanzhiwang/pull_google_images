@@ -12,6 +12,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCRIOTOKEN }}
+          #                     GHCRIOTOKEN
       - name: Docker pull and push
         run: |
           docker pull --platform linux/arm64 launcher.gcr.io/google/debian10:latest
