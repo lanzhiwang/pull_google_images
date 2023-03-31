@@ -14,7 +14,7 @@ jobs:
           password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
-          docker pull --platform linux/arm64 launcher.gcr.io/google/debian10:latest
-          docker tag  launcher.gcr.io/google/debian10:latest ghcr.io/lanzhiwang/debian10:latest
-          docker push ghcr.io/lanzhiwang/debian10:latest
+          docker pull --platform linux/arm64 kube-build:build-376ca68b23-5-v1.26.0-go1.19.7-bullseye.0
+          docker tag  kube-build:build-376ca68b23-5-v1.26.0-go1.19.7-bullseye.0 ghcr.io/lanzhiwang/kube-build:build-376ca68b23-5-v1.26.0-go1.19.7-bullseye.0
+          docker push ghcr.io/lanzhiwang/kube-build:build-376ca68b23-5-v1.26.0-go1.19.7-bullseye.0
 
