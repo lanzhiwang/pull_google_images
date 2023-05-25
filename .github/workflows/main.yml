@@ -14,7 +14,7 @@ jobs:
           password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
-          docker pull --platform linux/amd64 gcr.io/arrikto/kubeflow/oidc-authservice:28c59ef
-          docker tag  gcr.io/arrikto/kubeflow/oidc-authservice:28c59ef ghcr.io/lanzhiwang/gcr.io/arrikto/kubeflow/oidc-authservice:28c59ef
-          docker push ghcr.io/lanzhiwang/gcr.io/arrikto/kubeflow/oidc-authservice:28c59ef
+          docker pull --platform linux/amd64 ghcr.io/dexidp/dex:v2.31.2
+          docker tag  ghcr.io/dexidp/dex:v2.31.2 ghcr.io/lanzhiwang/ghcr.io/dexidp/dex:v2.31.2
+          docker push ghcr.io/lanzhiwang/ghcr.io/dexidp/dex:v2.31.2
 
