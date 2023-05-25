@@ -14,7 +14,7 @@ jobs:
           password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
-          docker pull --platform linux/arm64 registry.k8s.io/build-image/kube-cross:v1.26.0-go1.19.7-bullseye.0
-          docker tag  registry.k8s.io/build-image/kube-cross:v1.26.0-go1.19.7-bullseye.0 ghcr.io/lanzhiwang/registry.k8s.io/build-image/kube-cross:v1.26.0-go1.19.7-bullseye.0
-          docker push ghcr.io/lanzhiwang/registry.k8s.io/build-image/kube-cross:v1.26.0-go1.19.7-bullseye.0
+          docker pull --platform linux/amd64 gcr.io/arrikto/istio/pilot:1.14.1-1-g19df463bb
+          docker tag  gcr.io/arrikto/istio/pilot:1.14.1-1-g19df463bb ghcr.io/lanzhiwang/gcr.io/arrikto/istio/pilot:1.14.1-1-g19df463bb
+          docker push ghcr.io/lanzhiwang/gcr.io/arrikto/istio/pilot:1.14.1-1-g19df463bb
 
