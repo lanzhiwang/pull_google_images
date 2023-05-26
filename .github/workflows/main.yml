@@ -1,3 +1,5 @@
+
+
 name: GitGoogleContainer
 on:
   push:
@@ -15,7 +17,27 @@ jobs:
       - name: Docker pull and push
         run: |
           docker pull --platform linux/amd64 gcr.io/google-containers/busybox
-          
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/cache-server:2.0.0-alpha.5
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/metadata-envoy:2.0.0-alpha.5
+
+          docker pull --platform linux/amd64 gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.5
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/api-server:2.0.0-alpha.5
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.5
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.5
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/frontend:2.0.0-alpha.5
+
+          docker pull --platform linux/amd64 gcr.io/google-containers/busybox
+
           docker pull --platform linux/amd64 gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.5
 
           docker pull --platform linux/amd64 gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
@@ -97,5 +119,6 @@ jobs:
           docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/argoexec:v3.3.8-license-compliance
 
           docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance
+
 
 
