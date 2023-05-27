@@ -1,5 +1,4 @@
 
-
 name: GitGoogleContainer
 on:
   push:
@@ -16,109 +15,34 @@ jobs:
           password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
-          docker pull --platform linux/amd64 gcr.io/google-containers/busybox
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/cache-server:2.0.0-alpha.5
+			docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-cainjector:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/metadata-envoy:2.0.0-alpha.5
+			docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-controller:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
+			docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-acmesolver:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.5
+			docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-webhook:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/api-server:2.0.0-alpha.5
+			docker tag quay.io/jetstack/cert-manager-cainjector:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-cainjector:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.5
+			docker tag quay.io/jetstack/cert-manager-controller:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-controller:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.5
+			docker tag quay.io/jetstack/cert-manager-acmesolver:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-acmesolver:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/frontend:2.0.0-alpha.5
+			docker tag quay.io/jetstack/cert-manager-webhook:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-webhook:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/google-containers/busybox
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.5
+			docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-cainjector:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+			docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-controller:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/api-server:2.0.0-alpha.5
+			docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-acmesolver:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.5
+			docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-webhook:v1.12.1
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.5
 
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/frontend:2.0.0-alpha.5
-
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/viewer-crd-controller:2.0.0-alpha.5
-
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.5
-
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/mysql:5.7-debian
-
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/argoexec:v3.3.8-license-compliance
-
-          docker pull --platform linux/amd64 gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance
-
-          docker tag gcr.io/google-containers/busybox ghcr.io/lanzhiwang/gcr.io/google-containers/busybox
-
-          docker tag gcr.io/ml-pipeline/cache-server:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/cache-server:2.0.0-alpha.5
-
-          docker tag gcr.io/ml-pipeline/metadata-envoy:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/metadata-envoy:2.0.0-alpha.5
-
-          docker tag gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0 ghcr.io/lanzhiwang/gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
-
-          docker tag gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.5
-
-          docker tag gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance ghcr.io/lanzhiwang/gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
-
-          docker tag gcr.io/ml-pipeline/api-server:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/api-server:2.0.0-alpha.5
-
-          docker tag gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.5
-
-          docker tag gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.5
-
-          docker tag gcr.io/ml-pipeline/frontend:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/frontend:2.0.0-alpha.5
-
-          docker tag gcr.io/ml-pipeline/viewer-crd-controller:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/viewer-crd-controller:2.0.0-alpha.5
-
-          docker tag gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.5 ghcr.io/lanzhiwang/gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.5
-
-          docker tag gcr.io/ml-pipeline/mysql:5.7-debian ghcr.io/lanzhiwang/gcr.io/ml-pipeline/mysql:5.7-debian
-
-          docker tag gcr.io/ml-pipeline/argoexec:v3.3.8-license-compliance ghcr.io/lanzhiwang/gcr.io/ml-pipeline/argoexec:v3.3.8-license-compliance
-
-          docker tag gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance ghcr.io/lanzhiwang/gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance
-
-          docker push ghcr.io/lanzhiwang/gcr.io/google-containers/busybox
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/cache-server:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/metadata-envoy:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/metadata-writer:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/api-server:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/persistenceagent:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/scheduledworkflow:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/frontend:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/viewer-crd-controller:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/visualization-server:2.0.0-alpha.5
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/mysql:5.7-debian
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/argoexec:v3.3.8-license-compliance
-
-          docker push ghcr.io/lanzhiwang/gcr.io/ml-pipeline/workflow-controller:v3.3.8-license-compliance
 
 
 
