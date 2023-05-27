@@ -1,4 +1,7 @@
 
+
+
+
 name: GitGoogleContainer
 on:
   push:
@@ -15,34 +18,27 @@ jobs:
           password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
+          docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-cainjector:v1.12.1
 
-			docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-cainjector:v1.12.1
+          docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-controller:v1.12.1
 
-			docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-controller:v1.12.1
+          docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-acmesolver:v1.12.1
 
-			docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-acmesolver:v1.12.1
+          docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-webhook:v1.12.1
 
-			docker pull --platform linux/amd64 quay.io/jetstack/cert-manager-webhook:v1.12.1
+          docker tag quay.io/jetstack/cert-manager-cainjector:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-cainjector:v1.12.1
 
+          docker tag quay.io/jetstack/cert-manager-controller:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-controller:v1.12.1
 
-			docker tag quay.io/jetstack/cert-manager-cainjector:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-cainjector:v1.12.1
+          docker tag quay.io/jetstack/cert-manager-acmesolver:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-acmesolver:v1.12.1
 
-			docker tag quay.io/jetstack/cert-manager-controller:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-controller:v1.12.1
+          docker tag quay.io/jetstack/cert-manager-webhook:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-webhook:v1.12.1
 
-			docker tag quay.io/jetstack/cert-manager-acmesolver:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-acmesolver:v1.12.1
+          docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-cainjector:v1.12.1
 
-			docker tag quay.io/jetstack/cert-manager-webhook:v1.12.1 ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-webhook:v1.12.1
+          docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-controller:v1.12.1
 
+          docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-acmesolver:v1.12.1
 
-			docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-cainjector:v1.12.1
-
-			docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-controller:v1.12.1
-
-			docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-acmesolver:v1.12.1
-
-			docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-webhook:v1.12.1
-
-
-
-
+          docker push ghcr.io/lanzhiwang/quay.io/jetstack/cert-manager-webhook:v1.12.1
 
