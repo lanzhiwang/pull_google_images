@@ -14,8 +14,8 @@ jobs:
           password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
-          docker pull --platform linux/amd64 gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+          docker pull --platform linux/amd64 registry.k8s.io/nfd/node-feature-discovery:v0.12.1
 
-          docker tag gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0 ghcr.io/lanzhiwang/gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+          docker tag registry.k8s.io/nfd/node-feature-discovery:v0.12.1 ghcr.io/lanzhiwang/registry.k8s.io/nfd/node-feature-discovery:v0.12.1
 
-          docker push ghcr.io/lanzhiwang/gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+          docker push ghcr.io/lanzhiwang/registry.k8s.io/nfd/node-feature-discovery:v0.12.1
