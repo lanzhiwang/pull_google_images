@@ -19,3 +19,4 @@ jobs:
           docker tag registry.k8s.io/nfd/node-feature-discovery:v0.12.1 ghcr.io/lanzhiwang/registry.k8s.io/nfd/node-feature-discovery:v0.12.1
 
           docker push ghcr.io/lanzhiwang/registry.k8s.io/nfd/node-feature-discovery:v0.12.1
+
