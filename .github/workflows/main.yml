@@ -14,9 +14,35 @@ jobs:
           password: ${{ secrets.GHCRIOTOKEN }}
       - name: Docker pull and push
         run: |
+          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+
+          docker tag ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+
+          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+
           docker pull --platform linux/amd64 gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
 
           docker tag gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0 ghcr.io/lanzhiwang/gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
 
           docker push ghcr.io/lanzhiwang/gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
+
+          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-gpu-partitioner:0.1.2
+
+          docker tag ghcr.io/nebuly-ai/nos-gpu-partitioner:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-partitioner:0.1.2
+
+          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-partitioner:0.1.2
+
+          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-operator:0.1.2
+
+          docker tag ghcr.io/nebuly-ai/nos-operator:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-operator:0.1.2
+
+          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-operator:0.1.2
+
+          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-scheduler:0.1.2
+
+          docker tag ghcr.io/nebuly-ai/nos-scheduler:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-scheduler:0.1.2
+
+          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-scheduler:0.1.2
+
+
 
