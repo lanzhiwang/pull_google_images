@@ -43,6 +43,3 @@ jobs:
           docker tag ghcr.io/nebuly-ai/nos-scheduler:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-scheduler:0.1.2
 
           docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-scheduler:0.1.2
-
-
-
