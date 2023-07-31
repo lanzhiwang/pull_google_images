@@ -43,4 +43,12 @@ jobs:
           docker tag ghcr.io/nebuly-ai/nos-scheduler:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-scheduler:0.1.2
 
           docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-scheduler:0.1.2
+          
+          docker pull --platform linux/amd64 registry.k8s.io/nfd/node-feature-discovery:v0.12.1
+
+          docker tag registry.k8s.io/nfd/node-feature-discovery:v0.12.1 ghcr.io/lanzhiwang/registry.k8s.io/nfd/node-feature-discovery:v0.12.1
+
+          docker push ghcr.io/lanzhiwang/registry.k8s.io/nfd/node-feature-discovery:v0.12.1
+
+
 
