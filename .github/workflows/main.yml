@@ -5,50 +5,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2
-      - name: Login in Docker Registry
-        uses: docker/login-action@v1
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCRIOTOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Docker pull and push
         run: |
-          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+          docker pull --platform linux/amd64 docker.io/istio/proxyv2:1.19.3
 
-          docker tag ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+          docker tag docker.io/istio/proxyv2:1.19.3 docker.io/lanzhiwang/istio/proxyv2:1.19.3
 
-          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
-
-          docker pull --platform linux/amd64 gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
-
-          docker tag gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0 ghcr.io/lanzhiwang/gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
-
-          docker push ghcr.io/lanzhiwang/gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
-
-          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-gpu-partitioner:0.1.2
-
-          docker tag ghcr.io/nebuly-ai/nos-gpu-partitioner:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-partitioner:0.1.2
-
-          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-partitioner:0.1.2
-
-          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-operator:0.1.2
-
-          docker tag ghcr.io/nebuly-ai/nos-operator:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-operator:0.1.2
-
-          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-operator:0.1.2
-
-          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-scheduler:0.1.2
-
-          docker tag ghcr.io/nebuly-ai/nos-scheduler:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-scheduler:0.1.2
-
-          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-scheduler:0.1.2
-          
-          docker pull --platform linux/amd64 registry.k8s.io/nfd/node-feature-discovery:v0.12.1
-
-          docker tag registry.k8s.io/nfd/node-feature-discovery:v0.12.1 ghcr.io/lanzhiwang/registry.k8s.io/nfd/node-feature-discovery:v0.12.1
-
-          docker push ghcr.io/lanzhiwang/registry.k8s.io/nfd/node-feature-discovery:v0.12.1
-
-
-
+          docker push docker.io/lanzhiwang/istio/proxyv2:1.19.3
