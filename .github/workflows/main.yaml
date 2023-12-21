@@ -27,12 +27,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+      - name: Build and push
+        uses: docker/build-push-action@v5
         with:
-          images: lanzhiwang/proxyv2
           context: .
-          file: ./Dockerfile-proxyv2
           push: true
-          tags: 1.19.3
-
+          tags: ${{ steps.meta.outputs.tags }}
