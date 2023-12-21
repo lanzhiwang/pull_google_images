@@ -30,7 +30,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          images: lanzhiwang/proxyv2
+          file: Dockerfile-proxyv2
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: lanzhiwang/proxyv2:1.19.3
