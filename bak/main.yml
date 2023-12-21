@@ -1,0 +1,21 @@
+name: GitGoogleContainer
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v2
+      - name: Login in Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCRIOTOKEN }}
+      - name: Docker pull and push
+        run: |
+          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+
+          docker tag ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+
+          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
