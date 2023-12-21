@@ -30,7 +30,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          file: Dockerfile-proxyv2
+          file: Dockerfile
           context: .
           push: true
-          tags: lanzhiwang/proxyv2:1.19.3
+          tags: lanzhiwang/knative-releases/knative.dev/serving/cmd/activator@sha256:eff69d2271dde5f4ad0eb665d8a493773d7c78da05c2a5ef94c1d84dcac37cf1
