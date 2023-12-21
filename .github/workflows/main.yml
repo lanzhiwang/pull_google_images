@@ -15,6 +15,6 @@ jobs:
         run: |
           docker pull --platform linux/amd64 docker.io/istio/proxyv2:1.19.3
 
-          docker tag docker.io/istio/proxyv2:1.19.3 docker.io/lanzhiwang/istio/proxyv2:1.19.3
+          docker tag docker.io/istio/proxyv2:1.19.3 lanzhiwang/istio/proxyv2:1.19.3
 
-          docker push docker.io/lanzhiwang/istio/proxyv2:1.19.3
+          docker push lanzhiwang/istio/proxyv2:1.19.3
