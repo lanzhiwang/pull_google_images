@@ -11,7 +11,7 @@ name: Publish Docker image
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   push_to_registry:
@@ -30,7 +30,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          file: Dockerfile
+          file: Dockerfile-test
           context: .
           push: true
-          tags: lanzhiwang/activator:eff69d2271dde5f4ad0eb665d8a493773d7c78da05c2a5ef94c1d84dcac37cf1
+          tags: lanzhiwang/mlserver-dev:0.0.1
