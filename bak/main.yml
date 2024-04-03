@@ -1,21 +1,36 @@
-name: GitGoogleContainer
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
+
+name: Publish Docker image
+
 on:
   push:
+    branches: ["main"]
+
 jobs:
-  build:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2
-      - name: Login in Docker Registry
-        uses: docker/login-action@v1
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCRIOTOKEN }}
-      - name: Docker pull and push
-        run: |
-          docker pull --platform linux/amd64 ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-          docker tag ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2 ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
-
-          docker push ghcr.io/lanzhiwang/ghcr.io/nebuly-ai/nos-gpu-agent:0.1.2
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          file: Dockerfile-test
+          context: .
+          push: true
+          tags: lanzhiwang/mlserver-dev:0.0.1

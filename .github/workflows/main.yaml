@@ -1,25 +1,17 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# GitHub recommends pinning actions to a commit SHA.
-# To get a newer version, you will need to update the SHA.
-# You can also reference a tag or branch, but the action may change without warning.
-
-name: Publish Docker image
-
+name: GitGoogleContainer
 on:
   push:
-    branches: ["main"]
-
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
+      # - uses: actions/checkout@v2
+      # - name: Login in Docker Registry
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.repository_owner }}
+      #     password: ${{ secrets.GHCRIOTOKEN }}
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -27,10 +19,68 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          file: Dockerfile-test
-          context: .
-          push: true
-          tags: lanzhiwang/mlserver-dev:0.0.1
+      - name: Docker pull and push
+        run: |
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/cache-deployer:2.0.3
+          docker tag gcr.io/ml-pipeline/cache-deployer:2.0.3 lanzhiwang/ml-pipeline/cache-deployer:2.0.3
+          docker push lanzhiwang/ml-pipeline/cache-deployer:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/cache-server:2.0.3
+          docker tag gcr.io/ml-pipeline/cache-server:2.0.3 lanzhiwang/ml-pipeline/cache-server:2.0.3
+          docker push lanzhiwang/ml-pipeline/cache-server:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/application-crd-controller:1.0-beta-non-cluster-role
+          docker tag gcr.io/ml-pipeline/application-crd-controller:1.0-beta-non-cluster-role lanzhiwang/ml-pipeline/application-crd-controller:1.0-beta-non-cluster-role
+          docker push lanzhiwang/ml-pipeline/application-crd-controller:1.0-beta-non-cluster-role
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/metadata-envoy:2.0.3
+          docker tag gcr.io/ml-pipeline/metadata-envoy:2.0.3 lanzhiwang/ml-pipeline/metadata-envoy:2.0.3
+          docker push lanzhiwang/ml-pipeline/metadata-envoy:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/tfx-oss-public/ml_metadata_store_server:1.14.0
+          docker tag gcr.io/tfx-oss-public/ml_metadata_store_server:1.14.0 lanzhiwang/tfx-oss-public/ml_metadata_store_server:1.14.0
+          docker push lanzhiwang/tfx-oss-public/ml_metadata_store_server:1.14.0
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/metadata-writer:2.0.3
+          docker tag gcr.io/ml-pipeline/metadata-writer:2.0.3 lanzhiwang/ml-pipeline/metadata-writer:2.0.3
+          docker push lanzhiwang/ml-pipeline/metadata-writer:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+          docker tag gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance lanzhiwang/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+          docker push lanzhiwang/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/api-server:2.0.3
+          docker tag gcr.io/ml-pipeline/api-server:2.0.3 lanzhiwang/ml-pipeline/api-server:2.0.3
+          docker push lanzhiwang/ml-pipeline/api-server:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/persistenceagent:2.0.3
+          docker tag gcr.io/ml-pipeline/persistenceagent:2.0.3 lanzhiwang/ml-pipeline/persistenceagent:2.0.3
+          docker push lanzhiwang/ml-pipeline/persistenceagent:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/scheduledworkflow:2.0.3
+          docker tag gcr.io/ml-pipeline/scheduledworkflow:2.0.3 lanzhiwang/ml-pipeline/scheduledworkflow:2.0.3
+          docker push lanzhiwang/ml-pipeline/scheduledworkflow:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/frontend:2.0.3
+          docker tag gcr.io/ml-pipeline/frontend:2.0.3 lanzhiwang/ml-pipeline/frontend:2.0.3
+          docker push lanzhiwang/ml-pipeline/frontend:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/viewer-crd-controller:2.0.3
+          docker tag gcr.io/ml-pipeline/viewer-crd-controller:2.0.3 lanzhiwang/ml-pipeline/viewer-crd-controller:2.0.3
+          docker push lanzhiwang/ml-pipeline/viewer-crd-controller:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/visualization-server:2.0.3
+          docker tag gcr.io/ml-pipeline/visualization-server:2.0.3 lanzhiwang/ml-pipeline/visualization-server:2.0.3
+          docker push lanzhiwang/ml-pipeline/visualization-server:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/mysql:8.0.26
+          docker tag gcr.io/ml-pipeline/mysql:8.0.26 lanzhiwang/ml-pipeline/mysql:8.0.26
+          docker push lanzhiwang/ml-pipeline/mysql:8.0.26
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/inverse-proxy-agent:2.0.3
+          docker tag gcr.io/ml-pipeline/inverse-proxy-agent:2.0.3 lanzhiwang/ml-pipeline/inverse-proxy-agent:2.0.3
+          docker push lanzhiwang/ml-pipeline/inverse-proxy-agent:2.0.3
+
+          docker pull --platform linux/amd64 gcr.io/ml-pipeline/workflow-controller:v3.3.10-license-compliance
+          docker tag gcr.io/ml-pipeline/workflow-controller:v3.3.10-license-compliance lanzhiwang/ml-pipeline/workflow-controller:v3.3.10-license-compliance
+          docker push lanzhiwang/ml-pipeline/workflow-controller:v3.3.10-license-compliance
