@@ -22,7 +22,7 @@ jobs:
       - name: Docker pull and push
         run: |
           docker pull --platform linux/amd64 gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.57.0@sha256:111353d2fdf32fa8c51195dca4447582333b44419d57d66c915f59b89cde0ec3
-          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.57.0 ghcr.io/lanzhiwang/tekton-releases/tektoncd/pipeline/cmd/controller:v0.57.0
+          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.57.0@sha256:111353d2fdf32fa8c51195dca4447582333b44419d57d66c915f59b89cde0ec3 ghcr.io/lanzhiwang/tekton-releases/tektoncd/pipeline/cmd/controller:v0.57.0
           docker push ghcr.io/lanzhiwang/tekton-releases/tektoncd/pipeline/cmd/controller:v0.57.0
 
           docker pull --platform linux/amd64 gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.57.0@sha256:223a61b2b9798a679cbf36a8abad6f8fa13bf7bd9f11c8a2fd91d2afd3e14690
