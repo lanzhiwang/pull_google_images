@@ -113,7 +113,7 @@ jobs:
           # python:3.7
           # docker.io/metacontrollerio/metacontroller:v2.0.4
 
-          docker pull --platform linux/amd64 gcr.io/google-containers/busybox ghcr.io/lanzhiwang/google-containers/busybox
+          docker pull --platform linux/amd64 gcr.io/google-containers/busybox
           docker tag gcr.io/google-containers/busybox ghcr.io/lanzhiwang/google-containers/busybox
           docker push ghcr.io/lanzhiwang/google-containers/busybox
 
